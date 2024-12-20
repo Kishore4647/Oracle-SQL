@@ -1,0 +1,87 @@
+SQL> CREATE TABLE AUTHOR(AID NUMBER(5) PRIMARY KEY,
+  2  ANAME VARCHAR(10) UNIQUE,
+  3  AGE NUMBER(2) NOT NULL,
+  4  NO_BOOKS NUMBER(2) )
+  5  ;
+
+Table created.
+
+SQL> CREATE TABLE BOOKS(BID NUMBER(5) PRIMAEY KEY,
+  2  BNAME VARCHAR(10) UNIQUE,
+  3  BPRICE NUMBER(5) NOT NULL,
+  4  PUB_DATE DATE,
+  5  NOOFPAGE NUMBER(3) DEFAULT(30),
+  6  AID NUMBER(5) REFERENCES AUTHOR(AID);
+CREATE TABLE BOOKS(BID NUMBER(5) PRIMAEY KEY,
+                                 *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> CREATE TABLE BOOKS(BID NUMBER(5) PRIMARY KEY,
+  2  BNAME VARCHAR(10) UNIQUE,
+  3  BPRICE NUMBER(5) NOT NULL,
+  4  PUB_DATE DATE,
+  5  NOOFPAGE NUMBER(3) DEFAULT(30),
+  6  AID NUMBER(5) REFERENCES AUTHOR(AID));
+
+Table created.
+
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+BONUS                          TABLE                                            
+SALGRADE                       TABLE                                            
+AUTHOR                         TABLE                                            
+BOOKS                          TABLE                                            
+
+6 rows selected.
+
+SQL> DESC AUTHOR;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ AID                                       NOT NULL NUMBER(5)
+ ANAME                                              VARCHAR2(10)
+ AGE                                       NOT NULL NUMBER(2)
+ NO_BOOKS                                           NUMBER(2)
+
+SQL> ALTER TABLE AUTHOR
+  2  ADD GENDER VARCHAR(6) DEFAULT('MALE');
+
+Table altered.
+
+SQL> DESC AUTHOR;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ AID                                       NOT NULL NUMBER(5)
+ ANAME                                              VARCHAR2(10)
+ AGE                                       NOT NULL NUMBER(2)
+ NO_BOOKS                                           NUMBER(2)
+ GENDER                                             VARCHAR2(6)
+
+SQL> ALTER TABLE AUTHOR
+  2  RENAME GENDER TO AGENDER;
+RENAME GENDER TO AGENDER
+       *
+ERROR at line 2:
+ORA-14155: missing PARTITION or SUBPARTITION keyword 
+
+
+SQL>  ALTER TABLE AUTHOR
+  2  RENAME COLUMN GENDER TO AGENDER;
+
+Table altered.
+
+SQL> DESC AUTHOR;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ AID                                       NOT NULL NUMBER(5)
+ ANAME                                              VARCHAR2(10)
+ AGE                                       NOT NULL NUMBER(2)
+ NO_BOOKS                                           NUMBER(2)
+ AGENDER                                            VARCHAR2(6)
+
+SQL> SPOOL OFF

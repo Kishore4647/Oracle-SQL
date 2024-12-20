@@ -1,0 +1,11 @@
+SQL> select * from emp
+  2  where ename='smith';
+
+no rows selected
+
+SQL> select * from emp
+  2  where job='salesman';
+
+no rows selected
+
+SQL> spool off

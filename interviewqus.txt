@@ -1,0 +1,116 @@
+SQL>  SELECT SUBSTR(ENAME,1,LENGTH(ENAME)-1) FROM EMP;
+
+SUBSTR(ENA                                                                      
+----------                                                                      
+SMIT                                                                            
+ALLE                                                                            
+WAR                                                                             
+JONE                                                                            
+MARTI                                                                           
+BLAK                                                                            
+CLAR                                                                            
+SCOT                                                                            
+KIN                                                                             
+TURNE                                                                           
+ADAM                                                                            
+
+SUBSTR(ENA                                                                      
+----------                                                                      
+JAME                                                                            
+FOR                                                                             
+MILLE                                                                           
+
+14 rows selected.
+
+SQL> ---
+SQL> SELECT LENGTH('BANANA') - LENGTH(REPLACE('BANANA','A'));
+SELECT LENGTH('BANANA') - LENGTH(REPLACE('BANANA','A'))
+                                                      *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT LENGTH('BANANA') - LENGTH(REPLACE('BANANA','A')) FROM DUAL;
+
+LENGTH('BANANA')-LENGTH(REPLACE('BANANA','A'))                                  
+----------------------------------------------                                  
+                                             3                                  
+
+SQL> SELECT LENGTH('BANANA') - LENGTH(REPLACE('BANANA','B')) FROM DUAL;
+
+LENGTH('BANANA')-LENGTH(REPLACE('BANANA','B'))                                  
+----------------------------------------------                                  
+                                             1                                  
+
+SQL> SELECT TO_CHAR(CURRENTDATE,'DD-MON-YYYY') FROM DUAL;
+SELECT TO_CHAR(CURRENTDATE,'DD-MON-YYYY') FROM DUAL
+               *
+ERROR at line 1:
+ORA-00904: "CURRENTDATE": invalid identifier 
+
+
+SQL> SELECT TO_CHAR(CURRENT_DATE,'DD-MON-YYYY') FROM DAUL;
+SELECT TO_CHAR(CURRENT_DATE,'DD-MON-YYYY') FROM DAUL
+                                                *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECT TO_CHAR(CURRENT_DATE,'DD-MON-YYYY') FROM DUAL;
+
+TO_CHAR(CUR                                                                     
+-----------                                                                     
+07-AUG-2024                                                                     
+
+SQL> ---
+SQL> SELECT TO_CHAR(SYSDATE,'HH:Mi:SS') AS TODAYTIME FROM DUAL;
+
+TODAYTIM                                                                        
+--------                                                                        
+04:50:20                                                                        
+
+SQL> SELECT ENAME FROM EMP
+  2  WHERE SUBSTR(ENAME,1,1) IN ('A','E','I','O','U');
+
+ENAME                                                                           
+----------                                                                      
+ALLEN                                                                           
+ADAMS                                                                           
+
+SQL> SELECT LOWER(SUBSTR(ENAME,1,ROUND(LENGTH(ENAME)/2))) || SUBSTR(ENAME,ROUND(LENGTH(ENAME)/2)+1));
+SELECT LOWER(SUBSTR(ENAME,1,ROUND(LENGTH(ENAME)/2))) || SUBSTR(ENAME,ROUND(LENGTH(ENAME)/2)+1))
+                                                                                              *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT LOWER(SUBSTR(ENAME,1,ROUND(LENGTH(ENAME)/2))) || SUBSTR(ENAME,ROUND(LENGTH(ENAME)/2)+1)
+  2  FROM EMP;
+
+LOWER(SUBSTR(ENAME,1                                                            
+--------------------                                                            
+smiTH                                                                           
+allEN                                                                           
+waRD                                                                            
+jonES                                                                           
+marTIN                                                                          
+blaKE                                                                           
+claRK                                                                           
+scoTT                                                                           
+kiNG                                                                            
+turNER                                                                          
+adaMS                                                                           
+
+LOWER(SUBSTR(ENAME,1                                                            
+--------------------                                                            
+jamES                                                                           
+foRD                                                                            
+milLER                                                                          
+
+14 rows selected.
+
+SQL> SPOOL OFF EXIT
+SP2-0768: Illegal SPOOL command
+Usage: SPOOL { <file> | OFF | OUT }
+where <file> is file_name[.ext] [CRE[ATE]|REP[LACE]|APP[END]]
+SQL> SPOOL OFF
